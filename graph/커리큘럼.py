@@ -83,10 +83,9 @@ def topplogy_sort():
             indegree[i]-=1
             if indegree[i] == 0:
                 q.append(i)
-
+    
     for i in range(1,n+1):
         print(result[i])
-
 
 topplogy_sort()
 
