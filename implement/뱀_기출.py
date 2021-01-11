@@ -11,7 +11,7 @@ move_ls  = deque()
 for _ in range(l):
     t, m = input().split()
     move_ls.append((int(t),m))
-    #heapq.heappush(move_ls, (int(t),m))
+    
 
 def move(d):
   if d>4 :
@@ -27,7 +27,7 @@ x = 0
 y = 0
 time=0
 mine=deque()
-t,m = move_ls.popleft()#heapq.heappop(move_ls) 
+t,m = move_ls.popleft() 
 while True:
     if t== time:
         if m == 'D':
@@ -36,7 +36,7 @@ while True:
             direction-=1
         direction= move(direction)
         if move_ls:
-            t,m = move_ls.popleft()#heapq.heappop(move_ls)
+            t,m = move_ls.popleft()
     if [x,y] not in mine:
         mine.append([x,y])
     for i in range(1,5):

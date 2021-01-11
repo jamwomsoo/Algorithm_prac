@@ -1,59 +1,32 @@
-#0 빈칸,2 치킨집,1 집
-import heapq
-from collections import deque
-from copy import deepcopy
+from itertools import combinations
 n, m = map(int, input().split())
-arr = [[] for i in range(n)]
+arr = [ [] for i in range(n)]
 for i in range(n):
-  arr[i].extend(list(map(int,input().split())))
-chicken=[]
-home = []
-cnt = [[0]*n for _ in range(n)]
+  arr[i] = list(map(int,input().split()))
+
+chicken = []
+house = []
 for i in range(n):
   for j in range(n):
     if arr[i][j] == 2:
       chicken.append((i,j))
-    if arr[i][j] == 1:
-      home.append((i,j))
-      
-#home =[[] for _ in range(1)] 
-j = []
-#print(chicken)
-for x1,y1 in home:
-  last = int(1e9)
-  for x2,y2 in chicken:
-    #print(x1,y1," ",x2,y2,end=" 거리 ")
-    #print(last," ",abs(x1-x2)+abs(y1-y2))
-    if last > abs(x1-x2)+abs(y1-y2):
-      dx,dy = x2,y2
-      last = abs(x1-x2)+abs(y1-y2)
-  j.append(((dx,dy),(x1,y1),last))
-#print(j)
-re=0
-if m < len(chicken):
-  tmp =[]
-  for i in range(len(j)):
-    x,y = j[i][0]
-    cnt[x][y]+=1
-  for i in range(m):
-    big = 0
-    for x in range(n):
-      for y in range(n):
-        if big < cnt[x][y]:
-          big = cnt[x][y]
-          xn,yn =x,y
-    tmp.append((xn,yn))
-    cnt[xn][yn] = 0
+    elif arr[i][j] == 1:
+      house.append((i,j))
 
-  for i in tmp:
-    x,y = i  
-    for a in j:
-      if (x,y) == a[0]:
-        re+=a[2]
-else:
-  while j:
-    re+=j.pop()[2]
-print(re)
-  
+coms = combinations(chicken,m)
+chicken_distance_short = int(1e9)#각 집에서 조합된 치킨집들까지의 치킨거리의 합 중 최소만 찾는다
+for com in coms:
+  tmp = 0
+  for h in house:
+    short = int(1e9)
+    x1,y1 = h
+    for i in com:
+      x2,y2 = i
+      if short > abs(x1-x2)+ abs(y1-y2):
+        short = abs(x1-x2)+ abs(y1-y2)
+    tmp += short
+  if chicken_distance_short > tmp :
+    chicken_distance_short = tmp 
 
+print(chicken_distance_short)
 
