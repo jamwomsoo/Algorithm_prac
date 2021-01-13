@@ -1,91 +1,82 @@
-from collections import combinations
+from itertools import combinations
+
 n = int(input())
-teacher=[]
-space=[]
-student=[]
-graph =[ ]
+graph = []
+space = []
+teacher = []
 for i in range(n):
-    graph.append(list(map(int,input().split())))
+    graph.append(list(map(str,input().split())))
     for j in range(n):
+        if graph[i][j] =='T':
+            teacher.append((i,j))
         if graph[i][j] == 'X':
             space.append((i,j))
-        if graph[i][j] == 'T':
-            teacher.append((i,j))
-        if graph[i][j] == 'S':
-            student.append((i,j))
-data = [['']*n for _ in range(n)]
-direction_ls=[1,2,3,4]
-dx = [-1,0,1,0]
-dy = [0,-1,0,1]
-direction = 0
-
-
-def change_direction():
-    global direction
-    direction+=1
-    if direction > 3:
-        direction = 0
-
-def sight(data,x,y):
-    nx = x + dx[direction]
-    ny = y + dy[direction]
-    if 0>nx or nx>=n or ny<0 or ny>=n:
-        return
-    if data[nx][ny] == 'O' or data[nx][ny] == 'T':
-        return
-    #if data[nx][ny] == 'X':
-    data[nx][ny] = 'T'
-    sight(data,nx,ny)
-jugde = False
+    
 coms = combinations(space,3)
 
-def solution(cnt):
-    for i in range(n):
-         for j in range(n):
-            data[i][j] = graph[i][j]
-    for com in com:
-        
-
-        
+def check(x,y,i):
+    direction = i
+    if direction == 0:
+        while x>=0:
+            if graph[x][y] == 'S':
+                return True
+            if graph[x][y] == 'O':
+                return False
+            x -= 1
             
+    if direction == 1:
+         while y>=0:
+            if graph[x][y] == 'S':
+                return True
+            if graph[x][y] == 'O':
+                return False
+            y -= 1
+   
+    if direction == 2:
+         while x < n:
+            if graph[x][y] == 'S':
+                return True
+            if graph[x][y] == 'O':
+                return False
+            x += 1
+    
+    if direction == 3:
+         while y < n:
             
-# def dfs(cnt):
-#     global jugde
-    
-#     s_num=0    
-#     if cnt==0:
-#         for i in range(n):
-#             for j in range(n):
-#                 data[i][j] = graph[i][j]
-#                 if graph[i][j] == "S":
-#                     s_num+=1
-#         if s_num == 0:
-#             return
-#         for i in range(n):
-#             for j in range(n):
-#                 if graph[i][j] == 'T':
-#                     for d in range(4):
-#                         change_direction()
-#                         sight(data,i,j)
-#         for i in range(n):
-#             for j in range(n):
-#                 if data[i][j] == "S":
-#                     s_num-=1
-#         if s_num == 0:
-#             jugde = True
-#         return 
-#     else:
-#         for i in range(n):
-#             for j in range(n):
-#                 if graph[i][j] == 'X':
-#                     #print(x,y, end = " ")
-#                     graph[i][j] = 'O'
-#                     dfs(cnt-1)
-#                     graph[i][j] = 'X'
-    
+            if graph[x][y] == 'S':
+                return True
+            if graph[x][y] == 'O':
+                return False
+            y += 1
+    return False
 
-dfs(3)    
-if jugde == True:
+def process():
+    # 발생한 조합에서 모든 선생들의 시야에 학생이 있는지 없는지 확인
+    for x,y in teacher:    
+        for i in range(4):
+            # 한명이라도 학생을 발견한 경우
+            if check(x,y,i):
+                return True
+    #학생을 못 발견한 경우
+    return False
+
+find = False
+# 방해물의 조합중 학생들이 발견 안될 상황을 찾는다
+for com in coms:
+    for x,y in com:
+        graph[x][y]='O'
+    # 해당 조합에서 학생을 못 찾았을 경우
+    if not process():
+        # 원하는 상황을 찾았다고 체크후 탈출
+        find = True
+        break
+    for x,y in com:
+        graph[x][y]='X'
+if find:
     print("YES")
 else:
     print("NO")
+        
+    
+    
+
