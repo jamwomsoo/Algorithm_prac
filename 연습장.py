@@ -1,4 +1,3 @@
-import bisect
-a = ["frodo", "front", "frost", "frozen", "frame", "kakao"]
-a.sort()
-print(bisect.bisect(a,"fffffff"))
+a =[1]
+b=[1,2,3]
+print(1 in b)
