@@ -64,3 +64,20 @@ for i in range(1,n):
 print(n-max(dp))
 
 ##############################################################################
+################################
+# target 까지 만들 수 있는지 확인
+################################
+# 주어 진 동전 단위로 만들 수 없는 금액을 만들 때 효율적이다
+# target을 만들 수 있으면, target에 배열의 원소를 더해가며 새로운 target 전까지 만들 수 있는 지 확인 
+n = int(input())
+ls = list(map(int,input().split()))
+ls.sort()
+target = 1
+
+for penny in ls:
+    if target < penny:
+        break
+    target+=penny
+print(target)
+        
+    
