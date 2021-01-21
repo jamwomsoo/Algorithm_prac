@@ -1,45 +1,27 @@
-#못품ㅋ
-from collections import deque
-n , m = map(int, input().split())
-now = deque([(n-1,0)])
-move = 0
-# n이 더 클때
-dxn = [-2, 2, -1, 1]#1, 4, 2, 3
-dyn = [1, 1, 2, 2] 
+N, M = map(int, input().split()) 
+if N == 1:
+    # 못 움직임(시작한 한칸만 가능)
+    result = 1
+elif N < 3:
+    # N이 3보다 작으면 위, 아래로는 2칸씩은 못 움직이고 한칸씩 오른쪽 두칸씩이 최선
+    # 처음 위치 한 칸을 빼고 남은 칸을 2칸씩 움직이는 걸로 나누면 옆으로 총 갈 수 있는 칸수가 나오는데
+    # 이때 이동 회수 3회 초과 부터는 무조건 4가지 방식을 다 사용해야 하므로 최대 4칸이여야 한다
+    # 1더한건 시작칸
+    result = min(4,(M-1)//2+1)
+elif N >= 3 and M<7: 
+    # N이 3이상이면 위, 아래로 두칸씩 가도 상관 없고
+    # 오른쪽으로 한칸씩 가는게 최선
+    # 하지만 이동 3회 초과부터는 4가지 방식을 다 사용해야 하므로 최대 4칸
+    # 1더한건 시작칸
+    result = min(4,(M-1)+1)
+else: 
+    # 이동 4번 이상부터 한번씩 다 써줘야됨
+    # 옆으로 한칸씩 가는게 최대 이동 횟수에 좋다
+    # 처음 시작 1칸, 2,3번을 통해 오른쪽으로 2칸씩이동해서 통과한 칸 수 각각 1회씩 2회
+    # 2,3번으로 이동했으므로 총 남은 가로칸은 시작칸 한칸과 2씩 이동한 칸수 각각 1회 4칸을 빼준 상태에서
+    # 오른쪽으로 한칸씩 이동하는게 최대 이동 
+    result = 1 + 2 +(M-1-4) 
+print(result)
 
-# m이 더 클때 #2,3,1,4
-dxm = [ -1, 1,-2, 2]
-dym = [2, 2,1, 1 ]
-check = [False]*4
-changed=False
-num = -1
 
-while now:
-    x,y = now.popleft()
-    
-    for i in range(8):
-        if m>n:
-            xn = x + dxm[i%4]
-            yn = y + dym[i%4]
-        else:
-            xn = x + dxn[i%4]
-            yn = y + dyn[i%4]
-        if move>3:
-            if i>=4:
-                break
-            if (0<=xn<n and 0<=yn<m) and check[i%4] == False:
-                check[i%4] =True
-                move+=1
-                now.append((xn,yn))
-                break
-        else:
-            if (0<=xn<n and 0<=yn<m) and (check[i%4] == False or i>=4):
-                check[i%4] =True
-                move+=1
-                now.append((xn,yn))
-                break
-        print(now)
-    if False not in check:
-        check = [False]*4
-        
-print(move+1)
+
