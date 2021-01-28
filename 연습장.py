@@ -1,2 +1,3 @@
-a = [0,1,2,3]
-print(a.index(4))
+import bisect
+a = [3]
+print(bisect.bisect_left(a,10))
