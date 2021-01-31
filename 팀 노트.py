@@ -51,8 +51,13 @@ print(edit_distance())
 
   ######################################
  # LIS(가장 긴 증가하는 부분 수열 문제) #
-######################################
-
+########################################
+#예) {10,20,10,30,40,50}일때
+# dp를 [1, 1, 1, 1, 1, 1]초기화
+# i는 index 1부터 n-1까지
+# j는 i-1까지
+# arr내에서 i-1까지 arr[i]보다 작은 수의 갯수를 세준다
+# dp[i] = max(dp[i],dp[j]+1)
 n = int(input())
 arr = list(map(int, input().split()))
 arr.reverse()
@@ -62,6 +67,24 @@ for i in range(1,n):
         if arr[i]>arr[j]:
             dp[i] = max(dp[i],dp[j]+1)  
 print(n-max(dp))
+
+#############################################################
+# LIS 문제 이진 탐색버전
+# 가장 긴 증가하는 수열 문제(LIS)
+import bisect
+n = int(input())
+arr = list(map(int, input().split()))
+dp = []
+for d in arr:
+    # dp가 없거나 d이전의 값들의 최댓값이 d보다 작을때
+    if not dp or dp[-1]<d:
+        dp.append(d)
+    # d가 dp내의 최댓값 보다 작다면 binary search로 자리를 찾아서 넣어준다
+    else:
+        dp[bisect.bisect_left(dp,d)] = d
+print(len(dp))
+
+
 
 ##############################################################################
 ################################
