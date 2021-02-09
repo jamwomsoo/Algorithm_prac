@@ -44,19 +44,13 @@ def check_max(arr,num):
     _max = 0
     for i in range(n):
         for j in range(m):
-            
             tmp = make_techro(i,j,num)
-            if i ==2 and j == 0:
-                print(tmp)
             if not check_over(tmp,n,m):
                 continue
-            
             _sum = tmp_sum(arr,tmp)
-            if i ==2 and j == 0:
-                print(tmp, _sum)
-
             _max = max(_max, _sum)
     return _max
+
 def symmetry(arr):
     n = len(arr)
     m = len(arr[0])
@@ -64,23 +58,17 @@ def symmetry(arr):
     for i in range(n):
         for j in range(m):
             new_arr[i][j] = arr[i][m-1-j]
-    return new_arr    
+    return new_arr     
 
 for i in range(n):
     arr.append(list(map(int,input().split())))
 
 result = 0
-for i in range(3):
+for i in range(4):
     arr = turn_right_rotate_90(arr)
-#arr = symmetry(arr)
-print()
-for i in range(len(arr)):
-    for j in range(len(arr[0])):
-        print(arr[i][j], end = " ")
-    print()
+    result = max(result, check_max(arr,1), check_max(arr,2), check_max(arr,3), check_max(arr,4), check_max(arr,5))
+    s_arr = symmetry(arr)
+    result = max(result, check_max(s_arr,1), check_max(s_arr,2), check_max(s_arr,3), check_max(s_arr,4), check_max(s_arr,5))
 
-result = max(result,check_max(arr,5))
-
+    
 print(result)
-
-print()
