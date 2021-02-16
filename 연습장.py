@@ -1,4 +1,7 @@
-arr = [[1,2,2,2,2,2],[1,2,2,2,2,2],[1,2,2,2,2,2],[3,3,3,3,3,3]]
-for i in range(len(arr)):
-    arr[i]=arr[i][:3]
-print(arr)
+n,m,t = map(int, input().split())
+board = [list(map(int, input().split())) for _ in range(n)]
+total = 0
+_sum = 0
+for i in range(n):
+    total+=sum(board[i])
+print(total/(n*m))
