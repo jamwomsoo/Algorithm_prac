@@ -5,8 +5,8 @@ dy = [0,-1,-1,-1,0,1,1,1]
 
 n,m,k = map(int,input().split())
 tree_ls = [[[] for _ in range(n)] for _ in range(n)] #나무당 나이
-nutri = [list(map(int,input().split())) for _ in range(n)]
-board = [[5]*n for _ in range(n)]
+nutri = [list(map(int,input().split())) for _ in range(n)] # 매년 공급되는 영양분
+board = [[5]*n for _ in range(n)] # 현재 땅에 존재하는 영양분
 
 for i in range(m):
     x,y,z = map(int, input().split())

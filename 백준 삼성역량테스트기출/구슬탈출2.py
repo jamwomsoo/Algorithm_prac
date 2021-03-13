@@ -10,8 +10,10 @@ dy = [0,1,0,-1]
 for i in range(n):
     arr.append(list(map(str,input().strip())))
     for j in range(m):
+        # 빨간 구슬 초기 장소
         if arr[i][j] == 'R':
             rx,ry = i,j
+        # 파란 구슬 초기 장소
         if arr[i][j] == 'B':
             bx,by = i,j
 
@@ -29,8 +31,10 @@ def bfs(rx,ry,bx,by,d):
     while q:
         _rx, _ry, _bx, _by, _d = q.popleft()
         #print(_rx, _ry, _bx, _by, _d)
+        # 10 번 이하로 움직여서 꺼내야한다
         if _d > 10:
             break
+        
         for i in range(4):
             nrx,nry,rcnt = move(_rx, _ry, i)
             nbx,nby,bcnt = move(_bx, _by, i)

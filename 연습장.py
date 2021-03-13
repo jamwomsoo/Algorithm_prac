@@ -1,6 +1,10 @@
-arr = [[] for _ in range(2)]
-e = [[0,1],[2,3]]
-for _ in range(2):
-    for i in range(2):
-        arr[i]+=e[i]
-print(arr)
+n,m =map(int, input().split())
+arr= [list(map(int, input().split())) for _ in range(n)]
+
+
+new_arr = [[0]*n for _ in range(m)]
+for i in range(n):
+    for j in range(m):
+        print(m-j-1,n-i-1)
+        new_arr[j][n-i-1] = arr[i][j] 
+print(new_arr)

@@ -30,7 +30,7 @@ ans = start
 while start <= end:
     mid = (start + end)//2
     print(mid)
-    if check(mid) <= m:
+    if check(mid) <= m  :
         end = mid - 1
         ans = mid
     else:
