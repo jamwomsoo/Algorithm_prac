@@ -141,5 +141,38 @@ for row in dp:
     res = max(res, max(row))
 print(res**2)
 ##########################################################################################################################
-        
-    
+################################
+# 이진 트리 작성
+################################
+## 관련 문제 2019 카카오 코테 - 길 찾기 게임.py
+class Node:
+    # 노드 생성자
+    def __init__(self,node):
+        self.head = node
+    # 트리에 추가
+    def insert(self, value):
+        self.current_node = self.head
+        while True:
+            if value < self.current_node.value:
+                if self.current_node.left != None:
+                    self.current_node = self.current_node.left
+                else:
+                    self.current_node.left = Node(value)
+                    break        
+            else:
+                if self.current_node.right != None:
+                    self.current_node = self.current_node.right
+                else:
+                    self.current_node.right = Node(value)
+                    break
+    def search(self,value):
+        self.current_node = self.head
+        while self.current_node:
+            if self.current_node.value == value:
+                return True
+            elif value < self.current_node.value:
+                self.current_node = self.current_node.left
+            else:
+                self.current_node = self.current_node.right
+        return False
+############################################################################################
