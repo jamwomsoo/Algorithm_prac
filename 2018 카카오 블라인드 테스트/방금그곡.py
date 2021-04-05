@@ -1,5 +1,5 @@
 def timeToSec(start,end):
-    print(start,end)
+    
     start = list(map(int,start.split(':')))
     end = list(map(int, end.split(':')))
     start = start[0]*60+start[1]
@@ -16,13 +16,13 @@ def solution(m, musicinfos):
     
         melody = melody*(time//len(melody)) + melody[0:time%len(melody)]
         dic[name] = melody
-    asnwer = ["",""]
+    answer = ["",""]
     
     for key, value in dic.items():
         if m in value:
-            if len(asnwer[1])<len(value):
-                asnwer[0] = key
-                asnwer[1] = value
-    return "(None)" if len(asnwer[0]) == 0 else answer[0]
+            if len(answer[1])<len(value):
+                answer[0] = key
+                answer[1] = value
+    return "(None)" if len(answer[0]) == 0 else answer[0]
 #print(solution("ABCDEFG",["12:00,12:14,HELLO,CDEFGAB", "13:00,13:05,WORLD,ABCDEF"]))
 print(solution("CC#BCC#BCC#BCC#B",	[ "04:00,04:08,BAR,CC#BCC#BCC#B"]))
