@@ -1,6 +1,5 @@
-notation = '0123456789ABCDEF'
-def turnToStr(num,base):
-    q,r = divmod(num,base)
-    n = notation[r]
-    return turnToStr(q,base) + n if q else n 
-print(turnToStr(0,2))
+import heapq
+arr = []
+heapq.heappush(arr,[10,2])
+heapq.heappush(arr,[2,10])
+print(heapq.heappop(arr))
