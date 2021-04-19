@@ -1,3 +1,4 @@
+# https://www.acmicpc.net/problem/1041
 n = int(input())
 arr = list(map(int, input().split()))
  
@@ -8,7 +9,9 @@ else:
     arr[0] =arr[5] = min(arr[5],arr[0])
     arr[1] =arr[4] = min(arr[1],arr[4])
     arr[2] =arr[3] = min(arr[2],arr[3])
+    # 세 면이 모여있는 하나의 모서리 부분
     three = arr[0]+arr[1]+arr[2]
+    # 두면이 모여있는 하나의 모서리 부분
     two = min(arr[0]+arr[1],arr[0]+arr[2],arr[1]+arr[2])
     one = min(arr)
     n3=4

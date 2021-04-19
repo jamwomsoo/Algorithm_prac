@@ -1,6 +1,6 @@
 import sys
 n, k = map(int, input().split())
-
+# https://www.acmicpc.net/problem/1052
 # 2병 -> [1,1] ->[1] =>1병
 # 3병 -> [1,1,1] -> [1,2] => 2병
 # 4병 -> [1,1,1,1] -> [2,2] -> [4] => 1병 

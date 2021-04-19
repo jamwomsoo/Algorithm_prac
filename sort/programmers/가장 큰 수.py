@@ -9,10 +9,10 @@ def solution(numbers):
     # 1, 1 비교 1,0 비교 1,0 비교 1,0비교
     # -> 1이 1000보다 높으수로 여겨져서 앞에 있게 된다
     arr.sort(key = lambda x : x* 3, reverse= True)
-    
+    print(arr)
     return str(int("".join(arr)))
    
-    return answer
+    
 print(solution([6, 10, 2]))
 print(solution([3, 30, 34, 5, 9,33,1000]	))
 print(solution([10, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
