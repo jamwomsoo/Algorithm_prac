@@ -186,7 +186,7 @@ def turnToStr(num,base):
     return turnToStr(q,base) + n if q else n 
 ###############################################################################
 #################################
-# 다익스트라 최소 사이클 거리 구하기
+# 플로이드 와샬 최소 사이클 거리 구하기
 #################################
 v,e = map(int, input().split())
 graph = [[int(1e9)]*(v+1) for _ in range(v+1)]
@@ -207,3 +207,62 @@ if _min == int(1e9):
 else:
     print(_min)
 ######################################################################
+################################
+# 소수 인지 확인
+################################
+def isprime(a):
+    if a<2:
+        return False
+    for i in range(2,a):
+        if a%i == 0: return False
+    return True
+######################################################################
+################################
+# n자리 소수 구하기
+# 신기한 소수
+################################
+n = int(input())
+prime = [2,3,5,7]
+
+def isprime(num):
+    if num<2: return False
+    for i in range(2,num):
+        if num%i==0: return False
+
+    return True
+
+def dfs(first,num):
+    if num == 0: print(first)
+
+    for i in range(1,10,2):
+        tmp = first*10 + i
+        if isprime(tmp): dfs(tmp,num-1)
+
+for i in range(4):
+    dfs(prime[i],n-1)
+
+################################################################################
+########################################
+# 오셀로 재배치
+#######################################
+for i in range(int(input())):
+    n = int(input())
+    initial = list(map(str,input()))
+    goal = list(map(str,input()))
+    init = 0
+    g = 0
+    diff = 0
+    for i in range(n):
+        if initial[i] == 'W':
+            init +=1
+        if goal[i] == 'W':
+            g+=1
+        if goal[i] != initial[i]:
+            diff+=1
+
+    if init == g:
+        print(diff//2)
+    else:
+        tmp = abs(g-init)
+        diff = (diff-tmp)//2 + tmp
+        print(diff)
