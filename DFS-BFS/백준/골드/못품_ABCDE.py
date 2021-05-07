@@ -1,4 +1,7 @@
-# 
+# 백준 사이트 https://www.acmicpc.net/problem/13023
+# 참고 사이트 https://kyun2da.github.io/2020/09/21/ABCDE/
+# 풀이
+# 그래프의 깊이가 5이상임을 증명하면 된다
 
 import sys
 

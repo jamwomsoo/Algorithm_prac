@@ -8,6 +8,7 @@ def solution(board):
     m = len(board[0])
     q = deque()
     q.append((0,0,4,0))
+    # 이 부분 때문에 틀림
     visited={(0,0,1):0,(0,0,3):0}
     while q:
         x,y,d,c = q.popleft()
