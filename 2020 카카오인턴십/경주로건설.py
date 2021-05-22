@@ -27,6 +27,7 @@ def solution(board):
                     nc+=100
                 else:
                     nc += 600
+                print(not visited.get((nx,ny,k)),visited.get((nx,ny,k)))
                 if not visited.get((nx,ny,k)) or visited[(nx,ny,k)] > nc:
                     visited[(nx,ny,k)] = nc
                     q.append((nx,ny,k,nc))
