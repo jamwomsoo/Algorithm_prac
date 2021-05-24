@@ -2,20 +2,20 @@ n,m =map(int, input().split())
 d=[0]*(m+1)
 
 for i in range(n):
-d[int(input())] = 1
+    d[int(input())] = 1
 
 for i in range(0,m+1):
-for j in range(int(i//2)+1):
-    if d[j] == 0 or d[i-j]==0:
-    continue
-    if d[i] == 0 :
-    d[i] = d[j]+d[i-j]
-    else:
-    d[i] = min(d[i],d[j]+d[i-j])
+    for j in range(int(i//2)+1):
+        if d[j] == 0 or d[i-j]==0:
+            continue
+        if d[i] == 0 :
+            d[i] = d[j]+d[i-j]
+        else:
+            d[i] = min(d[i],d[j]+d[i-j])
 if d[m] == 0:
-print(-1)
+    print(-1)
 else:
-print(d[m])
+    print(d[m])
 
 #정답풀이
 #내가 작성한 코드보다 빠르고 공간 효율 좋음
