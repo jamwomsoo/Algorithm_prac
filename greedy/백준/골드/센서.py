@@ -1,4 +1,6 @@
 # 행복어린이집문제와 완전 유사
+# 백준 사이트 : https://www.acmicpc.net/problem/2212
+
 from itertools import combinations
 n= int(input()) # 센서의 개수
 k = int(input()) # 집중국의 개수

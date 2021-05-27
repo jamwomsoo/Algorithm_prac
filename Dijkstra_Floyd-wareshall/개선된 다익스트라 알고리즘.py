@@ -20,7 +20,7 @@ for _ in range(m):
 
 def djikstra(strat):
     q = []
-    headq.heappush(q, (0, start))
+    heapq.heappush(q, (0, start))
     distance[start] = 0
     while q:
         dist, now = heapq.heappop(q)
