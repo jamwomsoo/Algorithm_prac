@@ -13,7 +13,7 @@ def rotate_a_matrix_by_90_degree(a):
 # 정렬된 배열 1,2,2,2,2,3,4에서
 # 2의 갯수 구하기
 # 와일드카드를 포함한 쿼리와 비슷한 단어 찾기에 사용가능
-def count_by_range(arr,a)
+def count_by_range(arr,a):
     left = bisect.bisect_left(arr,a)
     right = bisect.bisect_right(arr,a)
     return right-left
