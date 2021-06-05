@@ -96,6 +96,35 @@ print(len(dp))
 
 
 
+///////////////////////////////////
+다른 풀이
+N = int(input())
+#arr = [int(1e9)]
+arr=list(map(int, input().split()))
+
+dp = []
+ans = 0
+def lower_bound(s,e,v):
+    while s<e:
+        m = (s+e)//2
+        if dp[m] < v:
+            s = m+1
+        else:
+            e = m
+    return e
+
+for ele in arr:
+    if not dp or dp[-1] < ele:
+        dp.append(ele)
+    else:
+        index = lower_bound(0,len(dp),ele)
+        dp[index] = ele
+
+
+
+
+
+
 ##############################################################################
 ################################
 # target 까지 만들 수 있는지 확인
