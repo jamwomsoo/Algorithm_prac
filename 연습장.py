@@ -1,2 +1,4 @@
-a=[0]*100
-print(a)
+a=11101
+
+for i in a:
+    print(i)
